@@ -1,6 +1,9 @@
 import Head from 'next/head';
-import { Box, Container } from '@mui/material';
+import { Box, Container, Stack } from '@mui/material';
 import { DashboardLayout } from '../components/dashboard-layout';
+import CareerProfile from '../components/career/career-profile'
+import CareerEducation from '../components/career/career-education'
+import CareerCorp from '../components/career/career-corp'
 //import { Career } from '../__mocks__/Career';
 
 const Career = () => (
@@ -12,11 +15,16 @@ const Career = () => (
     </Head>
     <Box
       component="main"
-      sx={{
-        flexGrow: 1,
-        py: 8
-      }}
-    >
+      >
+      <Container maxWidth={false}>
+        <Stack spacing={5} sx={{ mt: 4 }}>
+          <CareerProfile />
+          <CareerCorp />
+          <CareerEducation />
+          <br/>
+          <br/>
+        </Stack>
+      </Container>
     </Box>
   </>
 );

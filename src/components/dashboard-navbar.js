@@ -30,19 +30,13 @@ export const DashboardNavbar = (props) => {
         <Toolbar
           disableGutters
           sx={{
-            minHeight: 64,
+            minHeight: 40,
             left: 0,
             px: 2
           }}
         >
           <IconButton
             onClick={onSidebarOpen}
-            sx={{
-              display: {
-                xs: 'inline-flex',
-                lg: 'none'
-              }
-            }}
           >
             <MenuIcon fontSize="small" />
           </IconButton>

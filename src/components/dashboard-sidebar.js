@@ -30,7 +30,7 @@ const items = [
   {
     href: '/portfolio',
     icon: (<UsersIcon fontSize="small" />),
-    title: 'portfolio'
+    title: 'Portfolio'
   },
   // {
   //   href: '/products',

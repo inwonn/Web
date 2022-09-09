@@ -10,8 +10,9 @@ const DashboardLayoutRoot = styled('div')(({ theme }) => ({
   maxWidth: '100%',
   paddingTop: 64,
   [theme.breakpoints.up('lg')]: {
-    paddingLeft: 280
-  }
+    paddingLeft: 280,
+    paddingTop: 0
+  },
 }));
 
 export const DashboardLayout = (props) => {
@@ -32,7 +33,13 @@ export const DashboardLayout = (props) => {
           {children}
         </Box>
       </DashboardLayoutRoot>
-      <DashboardNavbar onSidebarOpen={() => setSidebarOpen(true)} />
+      <DashboardNavbar
+        onSidebarOpen={() => setSidebarOpen(true)}
+        sx={{
+            display: {
+              sx:'flex',
+              lg:'none'}
+          }} />
       <DashboardSidebar
         onClose={() => setSidebarOpen(false)}
         open={isSidebarOpen}
