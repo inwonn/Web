@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { Box } from '@mui/material';
+import { Box, Container } from '@mui/material';
 import { DashboardLayout } from '../components/dashboard-layout';
 import GameEngine from '../components/portfolio/game-engine'
 //import { Portfolio } from '../__mocks__/Portfolio';
@@ -11,7 +11,7 @@ const Portfolio = () => (
         Portfolio
       </title>
     </Head>
-    <GameEngine/>
+    <GameEngine />
   </>
 );
 Portfolio.getLayout = (page) => (

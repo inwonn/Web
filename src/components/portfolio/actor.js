@@ -1,31 +1,51 @@
 import Component from './component'
-import SpriteRendererComponent from './sprite-renderer-component'
 
 export default class Actor {
     constructor(name) {
-        this.components = [ new SpriteRendererComponent(name) ]
         this.name = name
+        this.components = {}
     }
 
-    getSpriteRenderComponent() {
-        return this.components[0]
+    getName() {
+        return this.name
+    }
+
+    getComponent(name) {
+        if (this.components.hasOwnProperty(name) === false) {
+            return null
+        }
+
+        return this.components[name]
+    }
+
+    getComponents() {
+        return this.components
+    }
+
+    addComponent(component) {
+        const key = component.getName()
+        this.components[key] = component
+    }
+
+    removeComponent(name) {
+        delete this.components[name]
     }
 
     begin() {
-        for (const component of this.components) {
-            component.begin()
+        for (const name in this.components) {
+            this.components[name].begin()
         }
     }
 
     end() {
-        for (const component of this.components) {
-            component.end()
+        for (const name in this.components) {
+            this.components[name].end()
         }
     }
 
     update(deltaTime) {
-        for (const component of this.components) {
-            component.update(deltaTime)
+        for (const name in this.components) {
+            this.components[name].update(deltaTime)
         }
     }
 }
