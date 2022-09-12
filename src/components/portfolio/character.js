@@ -118,6 +118,8 @@ class Character extends Actor {
         src.addAnimation("bottomWalk", bottomWalkAnimation)
         src.changeAnimation("bottomIdle")
 
+        //src.setPosition({x: 350, y : 1050})
+        src.setPosition({x: 350, y : 600})
         super.addComponent(src)
 
         const ic = new InputComponent("player-input")
@@ -132,7 +134,7 @@ class Character extends Actor {
     update(deltaTime) {
         const ic = super.getComponent("player-input")
         const src = super.getComponent("img/portfolio/WorldMapCharacter/WorldMapCuphead.png")
-        const speed = 3
+        const speed = 10
         
         this.prevDirection = this.direction
         this.direction = {x: 0, y: 0}

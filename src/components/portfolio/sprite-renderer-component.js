@@ -1,5 +1,6 @@
 import Component from './component'
 import RendererComponent from './renderer-component'
+import Viewport from './viewport'
 
 class SpriteRendererComponent extends RendererComponent {
     constructor(name) {
@@ -9,16 +10,6 @@ class SpriteRendererComponent extends RendererComponent {
         this.curImage = null
         this.animations = {}
         this.curAnimation = null
-        this.scale = 1
-        this.flip = false
-    }
-
-    setFlip(f) {
-        this.flip = f
-    }
-
-    setScale(scale) {
-        this.scale = scale
     }
 
     addAnimation(name, animation) {
@@ -49,7 +40,7 @@ class SpriteRendererComponent extends RendererComponent {
         this.curAnimation.update(deltaTime)
     }
 
-    render(canvas) {
+    render(canvas, viewport) {
         if (this.isLoaded === false) {  
              return
         }
@@ -61,12 +52,19 @@ class SpriteRendererComponent extends RendererComponent {
         const rect = this.curAnimation.getRect()
         const ctx = canvas.getContext("2d")
         const pos = super.getPosition()
-        const flipValue = this.flip ? -1 : 1
+        const scale = super.getScale()
+        const flip = this.getFlip()
+        const flipValue = flip ? -1 : 1
+        const viewportStartLocation = viewport.getStartLocation()
+        
+        let posY = pos.y - viewportStartLocation.y
+        let posX = flip ? pos.x + rect['width'] * scale : pos.x
+        posX = posX - viewportStartLocation.x
 
-        ctx.save();
-        ctx.setTransform(flipValue, 0, 0, 1, this.flip ? pos.x + rect['width'] * this.scale : pos.x, pos.y);
-        ctx.drawImage(this.curImage, rect['left'], rect['top'], rect['width'], rect['height'], 0, 0, rect['width'] * this.scale, rect['height'] * this.scale);
-        ctx.restore();
+        ctx.save()
+        ctx.setTransform(flipValue, 0, 0, 1, posX, posY)
+        ctx.drawImage(this.curImage, rect['left'], rect['top'], rect['width'], rect['height'], 0, 0, rect['width'] * this.scale, rect['height'] * this.scale)
+        ctx.restore()
     }
 }
 
