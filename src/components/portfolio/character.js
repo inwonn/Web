@@ -6,8 +6,13 @@ import InputComponent from './input-component'
 class Character extends Actor {
     constructor(name) {
         super(name)
+        this.actors = null
         this.direction = {x: 0, y: 0}
         this.prevDirection = {x: 0, y:0}
+    }
+
+    setActors(actors) {
+        this.actors = actors
     }
 
     begin() {
@@ -118,8 +123,8 @@ class Character extends Actor {
         src.addAnimation("bottomWalk", bottomWalkAnimation)
         src.changeAnimation("bottomIdle")
 
-        //src.setPosition({x: 350, y : 1050})
-        src.setPosition({x: 1550, y : 550})
+        src.setPosition({x: 350, y : 1050})
+        //src.setPosition({x: 1550, y : 550})
         super.addComponent(src)
 
         const ic = new InputComponent("player-input")
@@ -134,55 +139,62 @@ class Character extends Actor {
     update(deltaTime) {
         const ic = super.getComponent("player-input")
         const src = super.getComponent("img/portfolio/WorldMapCharacter/WorldMapCuphead.png")
-        const speed = 15
+        const speed = 5
         
         this.prevDirection = this.direction
         this.direction = {x: 0, y: 0}
 
-        if (ic.isKeyPress('w')) {
+        if (ic.isKeyPress('ArrowUp')) {
             this.direction.y -= 1
         }
-        if (ic.isKeyPress('a')) {
+        if (ic.isKeyPress('ArrowLeft')) {
             this.direction.x -= 1
             src.setFlip(true)
         }
-        if (ic.isKeyPress('s')) {
+        if (ic.isKeyPress('ArrowDown')) {
             this.direction.y += 1
         }
-        if (ic.isKeyPress('d')) {
+        if (ic.isKeyPress('ArrowRight')) {
             this.direction.x += 1
             src.setFlip(false)
+        }
+
+        if (this.direction.x !== 0 &&
+            this.direction.y !== 0)
+        {
+            this.direction.x = this.direction.x * 0.7
+            this.direction.y = this.direction.y * 0.7
         }
 
         if (this.direction.x === 0 && this.direction.y === -1) {
             src.changeAnimation("topWalk")
         }
-        else if ((this.direction.x === 1 || this.direction.x === -1) && this.direction.y === -1) {
+        else if ((this.direction.x > 0 || this.direction.x < 0) && this.direction.y < 0) {
             src.changeAnimation("topRightWalk")
         }
-        else if ((this.direction.x === 1 || this.direction.x === -1) && this.direction.y === 0) {
+        else if ((this.direction.x > 0 || this.direction.x < 0) && this.direction.y === 0) {
              src.changeAnimation("rightWalk")
         }
-        else if ((this.direction.x === 1 || this.direction.x === -1) && this.direction.y === 1) {
+        else if ((this.direction.x > 0 || this.direction.x < 0) && this.direction.y > 0) {
             src.changeAnimation("bottomRightWalk")
         }
-        else if (this.direction.x === 0 && this.direction.y === 1) {
+        else if (this.direction.x === 0 && this.direction.y > 0) {
             src.changeAnimation("bottomWalk")
         }
         else {
-            if (this.prevDirection.x === 0 && this.prevDirection.y === -1) {
+            if (this.prevDirection.x === 0 && this.prevDirection.y < 0) {
                 src.changeAnimation("topIdle")
             }
-            else if ((this.prevDirection.x === 1 || this.prevDirection.x === -1) && this.prevDirection.y === -1) {
+            else if ((this.prevDirection.x > 0 || this.prevDirection.x < 0) && this.prevDirection.y < 0) {
                 src.changeAnimation("topRightIdle")
             }
-            else if ((this.prevDirection.x === 1 || this.prevDirection.x === -1) && this.prevDirection.y === 0) {
+            else if ((this.prevDirection.x > 0 || this.prevDirection.x < 0) && this.prevDirection.y === 0) {
                  src.changeAnimation("rightIdle")
             }
-            else if ((this.prevDirection.x === 1 || this.prevDirection.x === -1) && this.prevDirection.y === 1) {
+            else if ((this.prevDirection.x > 0 || this.prevDirection.x < 0) && this.prevDirection.y > 0) {
                 src.changeAnimation("bottomRightIdle")
             }
-            else if (this.prevDirection.x === 0 && this.prevDirection.y === 1) {
+            else if (this.prevDirection.x === 0 && this.prevDirection.y > 0) {
                 src.changeAnimation("bottomIdle")
             }   
         }

@@ -16,13 +16,6 @@ class InputComponent extends Component {
         return this.keyStates[key]["down"]
     }
 
-    isKeyUp(key) {
-        if (this.keyStates[key] === undefined) {
-            return false
-        }
-
-        return this.keyStates[key]["up"]
-    }
 
     isKeyPress(key) {
         if (this.keyStates[key] === undefined) {
@@ -30,6 +23,14 @@ class InputComponent extends Component {
         }
 
         return this.keyStates[key]["press"]
+    }
+
+    isKeyUp(key) {
+        if (this.keyStates[key] === undefined) {
+            return false
+        }
+
+        return this.keyStates[key]["up"]
     }
 
     update(deltaTime) {
@@ -40,18 +41,13 @@ class InputComponent extends Component {
 
     onKeyDown(key) {
         if (this.keyStates[key] === undefined) {
-            this.keyStates[key] = { down: false, up: false, press: false}
+            this.keyStates[key] = { down: true, up: false, press: true}
         }
-        this.keyStates[key]["down"] = true
-        this.keyStates[key]['up'] = false
-    }
-
-    onKeyPress(key) {
-        if (this.keyStates[key] === undefined) {
-            this.keyStates[key] = { down: false, up: false, press: false}
+        else {
+            this.keyStates[key]["down"] = true
+            this.keyStates[key]["press"] = true
+            this.keyStates[key]['up'] = false
         }
-        this.keyStates[key]['press'] = true
-        this.keyStates[key]['up'] = false
     }
 
     onKeyUp(key) {

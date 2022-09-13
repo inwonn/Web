@@ -37,7 +37,8 @@ class GameWorld {
         {
             const water_muliply = this.createActor("water_muliply")
             const trc = new TextureRendererComponent("img/portfolio/dlc_water_multiply.png")
-            trc.setScale(0.8)
+            trc.setPosition({ x: -400, y:0 })
+            trc.setScale(1)
             water_muliply.addComponent(trc)
         }
 
@@ -352,6 +353,158 @@ class GameWorld {
         }
 
         {
+            const boatman = this.createActor("boatman")
+            const idleAnim = new FolderTextureAnimation({
+                images: [
+                    { path: 'img/portfolio/WorldMapCharacter/NPCBoatman/BoatmanIdle/boatman_0001.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCBoatman/BoatmanIdle/boatman_0002.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCBoatman/BoatmanIdle/boatman_0003.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCBoatman/BoatmanIdle/boatman_0004.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCBoatman/BoatmanIdle/boatman_0005.png', size: { width: 125, height: 165 } },
+                ],
+                interval: 0.1,
+                loop: true,
+                pingPong: true
+            })
+            const talkStartAnim = new FolderTextureAnimation({
+                images: [
+                    { path: 'img/portfolio/WorldMapCharacter/NPCBoatman/BoatmanTalkStart/boatman_0006.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCBoatman/BoatmanTalkStart/boatman_0007.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCBoatman/BoatmanTalkStart/boatman_0008.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCBoatman/BoatmanTalkStart/boatman_0009.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCBoatman/BoatmanTalkStart/boatman_0010.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCBoatman/BoatmanTalkStart/boatman_0011.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCBoatman/BoatmanTalkStart/boatman_0012a.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCBoatman/BoatmanTalkStart/boatman_0012b.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCBoatman/BoatmanTalkStart/boatman_0012c.png', size: { width: 125, height: 165 } },
+                ],
+                interval: 0.1,
+                loop: true,
+                pingPong: true
+            })
+            const talkEndAnim = new FolderTextureAnimation({
+                images: [
+                    { path: 'img/portfolio/WorldMapCharacter/NPCBoatman/BoatmanTalkEnd/boatman_0013.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCBoatman/BoatmanTalkEnd/boatman_0014.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCBoatman/BoatmanTalkEnd/boatman_0015.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCBoatman/BoatmanTalkEnd/boatman_0016.png', size: { width: 125, height: 165 } }
+                ],
+                interval: 0.1,
+                loop: true,
+                pingPong: true
+            })
+            const trc = new FolderTextureRendererComponent("boat")
+            trc.addAnimation("idle", idleAnim)
+            trc.addAnimation("talkStart", talkStartAnim)
+            trc.addAnimation("talkEnd", talkEndAnim)
+            trc.changeAnimation("idle")
+            trc.setPosition({ x: 240, y: 1000 })
+            trc.setScale(0.8)
+            boatman.addComponent(trc)
+        }
+
+        {
+            const lantern = this.createActor("lantern")
+            const idleAnim = new FolderTextureAnimation({
+                images: [
+                    { path: 'img/portfolio/WorldMapCharacter/NPCLantern/lantern_npc_idle_a_0001.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCLantern/lantern_npc_idle_a_0002.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCLantern/lantern_npc_idle_a_0003.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCLantern/lantern_npc_idle_a_0004.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCLantern/lantern_npc_idle_a_0005.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCLantern/lantern_npc_idle_a_0006.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCLantern/lantern_npc_idle_a_0007.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCLantern/lantern_npc_idle_a_0008.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCLantern/lantern_npc_idle_a_0009.png', size: { width: 125, height: 165 } },
+                ],
+                interval: 0.1,
+                loop: true,
+                pingPong: true
+            })
+            const trc = new FolderTextureRendererComponent("boat")
+            trc.addAnimation("idle", idleAnim)
+            trc.changeAnimation("idle")
+            trc.setPosition({ x: 1592, y: 245 })
+            trc.setScale(0.8)
+            lantern.addComponent(trc)
+        }
+
+        {
+            const newscat = this.createActor("newscat")
+            const idleAnim = new FolderTextureAnimation({
+                images: [
+                    { path: 'img/portfolio/WorldMapCharacter/NPCNewsCat/newsie_cat_0001.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCNewsCat/newsie_cat_0002.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCNewsCat/newsie_cat_0003.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCNewsCat/newsie_cat_0004.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCNewsCat/newsie_cat_0005.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCNewsCat/newsie_cat_0006.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCNewsCat/newsie_cat_0007.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCNewsCat/newsie_cat_0009.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCNewsCat/newsie_cat_0010.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCNewsCat/newsie_cat_0011.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCNewsCat/newsie_cat_0012.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCNewsCat/newsie_cat_0013.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCNewsCat/newsie_cat_0014.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCNewsCat/newsie_cat_0015.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCNewsCat/newsie_cat_0016.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCNewsCat/newsie_cat_0017.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCNewsCat/newsie_cat_0018.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCNewsCat/newsie_cat_0019.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCNewsCat/newsie_cat_0020.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCNewsCat/newsie_cat_0021.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCNewsCat/newsie_cat_0022.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCNewsCat/newsie_cat_0023.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCNewsCat/newsie_cat_0024.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCNewsCat/newsie_cat_0025.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCNewsCat/newsie_cat_0026.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCNewsCat/newsie_cat_0027.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCNewsCat/newsie_cat_0028.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCNewsCat/newsie_cat_0029.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCNewsCat/newsie_cat_0030.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCNewsCat/newsie_cat_0031.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCNewsCat/newsie_cat_0032.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCNewsCat/newsie_cat_0033.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCNewsCat/newsie_cat_0034.png', size: { width: 125, height: 165 } },
+                ],
+                interval: 0.1,
+                loop: true,
+                pingPong: true
+            })
+            const trc = new FolderTextureRendererComponent("newscat")
+            trc.addAnimation("idle", idleAnim)
+            trc.changeAnimation("idle")
+            trc.setPosition({ x: 1270, y: 600 })
+            trc.setScale(0.8)
+            newscat.addComponent(trc)
+        }
+
+        {
+            const pickaxe = this.createActor("pickaxe")
+            const idleAnim = new FolderTextureAnimation({
+                images: [
+                    { path: 'img/portfolio/WorldMapCharacter/NPCPickaxe/pickaxe_npc_idle_0001.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCPickaxe/pickaxe_npc_idle_0002.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCPickaxe/pickaxe_npc_idle_0003.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCPickaxe/pickaxe_npc_idle_0004.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCPickaxe/pickaxe_npc_idle_0005.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCPickaxe/pickaxe_npc_idle_0006.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCPickaxe/pickaxe_npc_idle_0007.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCPickaxe/pickaxe_npc_idle_0009.png', size: { width: 125, height: 165 } },
+                ],
+                interval: 0.1,
+                loop: true,
+                pingPong: true
+            })
+            const trc = new FolderTextureRendererComponent("pickaxe")
+            trc.addAnimation("idle", idleAnim)
+            trc.changeAnimation("idle")
+            trc.setPosition({ x: 1660, y: 270 })
+            trc.setScale(0.8)
+            pickaxe.addComponent(trc)
+        }
+
+        {
             const canyonStairs = this.createActor("canyon_stairs")
             const trc = new TextureRendererComponent("img/portfolio/dlc_canyon_stairs.png")
             trc.setPosition({ x: 1230, y: 1180 })
@@ -448,6 +601,34 @@ class GameWorld {
         {
             const cuphead = new Character("cuphead")
             this.addActor(cuphead)
+        }
+        {
+            const cactusGirl = this.createActor("cactusGirl")
+            const idleAnim = new FolderTextureAnimation({
+                images: [
+                    { path: 'img/portfolio/WorldMapCharacter/NPCCactus/cactus_girl_0001.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCCactus/cactus_girl_0002.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCCactus/cactus_girl_0003.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCCactus/cactus_girl_0004.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCCactus/cactus_girl_0005.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCCactus/cactus_girl_0006.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCCactus/cactus_girl_0007.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCCactus/cactus_girl_0008.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCCactus/cactus_girl_0009.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCCactus/cactus_girl_0010.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCCactus/cactus_girl_0011.png', size: { width: 125, height: 165 } },
+                    { path: 'img/portfolio/WorldMapCharacter/NPCCactus/cactus_girl_0012.png', size: { width: 125, height: 165 } },
+                ],
+                interval: 0.1,
+                loop: true,
+                pingPong: true
+            })
+            const trc = new FolderTextureRendererComponent("cactusGirl")
+            trc.addAnimation("idle", idleAnim)
+            trc.changeAnimation("idle")
+            trc.setPosition({ x: 1425, y: 1395 })
+            trc.setScale(0.8)
+            cactusGirl.addComponent(trc)
         }
 
         {
@@ -681,21 +862,6 @@ class GameWorld {
                 }
 
                 component.onKeyUp(key)
-            }
-        }
-    }
-
-    onKeyPress(key) {
-        for (const name in this.actors) {
-            const actor = this.actors[name]
-            const components = actor.getComponents()
-            for (const name in components) {
-                const component = components[name]
-                if (component instanceof InputComponent === false) {
-                    continue
-                }
-
-                component.onKeyPress(key)
             }
         }
     }
